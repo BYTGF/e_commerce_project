@@ -27,7 +27,7 @@ export default function HomePage( {isLoggedIn} ) {
 
   const showPage = (pageTitle) => {
     if(isPage === "Home"){
-      return <LandingPage ></LandingPage>
+      return <LandingPage changePage={changePage}></LandingPage>
     }else if (isPage === "Products") {
       return <ItemListPage addItem={addItems}/>
     } else if (isPage === "CartPage") {

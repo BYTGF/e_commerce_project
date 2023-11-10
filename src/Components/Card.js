@@ -11,10 +11,10 @@ export default function ImgMediaCard(props) {
   const handleAddItem = (item) => {
       props.addItem(item)
   }
-
+  
   return (
     <Card sx={{
-      width: 400,
+      width: 440,
       margin: "15px 5px",
       display: "flex",
       padding: "0 5px 15px 5px",

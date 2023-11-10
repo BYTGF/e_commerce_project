@@ -5,6 +5,7 @@ import HomePage from './Pages/HomePage';
 import SignUp from './Pages/LoginPage';
 import Login from './Pages/LoginPage';
 
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -34,7 +35,7 @@ function App() {
 export default App;
 
 // import React from "react";
-// import { makeStyles } from '@mui/material/styles';
+// import { makeStyles } from '@mui/styles';
 // import { CssBaseline } from "@mui/material";
 
 // const useStyle =  makeStyles(( theme ) => ({

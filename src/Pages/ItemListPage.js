@@ -3,8 +3,10 @@ import Tables from "../Components/Table";
 import ImgMediaCard from "../Components/Card";
 import PrimarySearchAppBar from "../Components/NavBar";
 import axios from 'axios';
+import { Snackbar } from "@mui/material";
 
 export default function ItemListPage({addItem}) {
+  
     const [datas, setDatas] = React.useState([])
     const url = "https://dummyjson.com/products?select=title,price,description,images"
     React.useEffect(() => {
@@ -27,7 +29,7 @@ export default function ItemListPage({addItem}) {
                 <ImgMediaCard addItem={addItem} key={data.id} data={data}></ImgMediaCard>
             ))}
         </div>
-        
+       
       </div>
     </div>
   );

@@ -1,26 +1,29 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TableHead from '@mui/material/TableHead';
-import axios from 'axios';
-import { Button } from '@mui/material';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import TableHead from "@mui/material/TableHead";
+import axios from "axios";
+import { Button, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 function TablePaginationActions(props) {
-
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -47,28 +50,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -81,24 +92,22 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
 const columns = [
-  {id: 'img', label: 'Images', minWidth: 170, align:'center'},
-  { id: 'product', label: 'Products', minWidth: 170, align:'center' },
-  { id: 'description', label: 'Description', minWidth: 100, align:'center' },
+  { id: "img", label: "Images", minWidth: 170, align: "center" },
+  { id: "product", label: "Products", minWidth: 170, align: "center" },
+  { id: "description", label: "Description", minWidth: 100, align: "center" },
   {
-    id: 'price',
-    label: 'Price',
+    id: "price",
+    label: "Price",
     minWidth: 170,
-    align:'center'
+    align: "center",
   },
   {
-    id: 'action',
-    label: 'Action',
+    id: "action",
+    label: "Action",
     minWidth: 170,
-    align:'center'
+    align: "center",
   },
-
 ];
 
 export default function Tables(props) {
@@ -106,7 +115,7 @@ export default function Tables(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // const [datas, setDatas] = React.useState(props.itemInCart)
-  const datas = props.itemInCart
+  const datas = props.itemInCart;
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - datas.length) : 0;
@@ -120,32 +129,60 @@ export default function Tables(props) {
     setPage(0);
   };
 
-  const handleRemove = (item) =>{
-    props.removeFromCart(item)
-  }
-  
+  const handleRemove = (item) => {
+    props.removeFromCart(item);
+  };
+
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500, boxShadow: "rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;" }} aria-label="custom pagination table">
-
-        <TableBody sx={{padding:20}}>
+      <Table
+        sx={{
+          minWidth: 500,
+          boxShadow:
+            "rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;",
+        }}
+        aria-label="custom pagination table"
+      >
+        <TableBody sx={{ padding: 20 }}>
           {(rowsPerPage > 0
             ? datas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : datas
           ).map((data, index) => (
-            <TableRow key={index}
-            sx={{ 'td, th': { border: 0 } }}>
-              <TableCell style={{ }} align="center" component="th" scope="row">
-                <img src={data.images[0]} alt={data.title} width={250}/>
+            <TableRow key={index} sx={{ "td, th": { border: 0 } }}>
+              <TableCell style={{}} align="center" component="th" scope="row">
+                <img src={data.images[0]} alt={data.title} width={250} />
               </TableCell>
-              <TableCell style={{ minWidth:"100px" }}  align="center">
+              <TableCell style={{ minWidth: "100px" }} align="center">
                 {data.title}
               </TableCell>
-              <TableCell style={{ minWidth:"100px" }} align="center">
+              <TableCell style={{ minWidth: "100px" }} align="center">
                 $ {data.price}
               </TableCell>
-              <TableCell style={{minWidth:"150px" }} align="center">
-                <Button variant="contained" onClick={() => handleRemove(index)}>Remove Item</Button>
+              <TableCell style={{ maxWidth: "50px" }} align="center">
+                <ButtonGroup variant="text" aria-label="text button group">
+                  <IconButton
+                    aria-label="delete"
+                    size="large"
+                    onClick={() => handleRemove(index)}
+                  >
+                    <RemoveIcon fontSize="inherit" />
+                  </IconButton>
+                  <Typography>0</Typography>
+                  <IconButton
+                    aria-label="delete"
+                    size="large"
+                  
+                  >
+                    <AddIcon fontSize="inherit" />
+                  </IconButton>
+                </ButtonGroup>
+                <IconButton
+                  aria-label="delete"
+                  size="large"
+                  onClick={() => handleRemove(index)}
+                >
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}
@@ -158,14 +195,14 @@ export default function Tables(props) {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={5}
               count={datas.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
                 inputProps: {
-                  'aria-label': 'rows per page',
+                  "aria-label": "rows per page",
                 },
                 native: true,
               }}

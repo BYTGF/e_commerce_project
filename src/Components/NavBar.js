@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import BatteryAlertIcon from '@mui/icons-material/BatteryAlert';
+import AppleIcon from '@mui/icons-material/Apple';
 
 const pages = [ "Home", "Products"];
 
@@ -50,23 +50,24 @@ return (
 <AppBar position="static">
     <Container maxWidth="xl">
     <Toolbar disableGutters>
-        <BatteryAlertIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+        <AppleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
         <Typography
         variant="h6"
         noWrap
         component="a"
         href="#app-bar-with-responsive-menu"
+        color="212121"
         sx={{
             mr: 2,
             display: { xs: "none", md: "flex" },
             fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
-            color: "inherit",
+            color: "black",
             textDecoration: "none",
         }}
         >
-        BUMN
+        LSC
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -76,7 +77,7 @@ return (
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
-            color="inherit"
+            color="black"
         >
             <MenuIcon />
         </IconButton>
@@ -100,7 +101,7 @@ return (
         >
             {pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
+                <Typography textAlign="center" onClick={() => handlePageChange(page)}>{page}</Typography>
             </MenuItem>
             ))}
         </Menu>
@@ -118,18 +119,18 @@ return (
             fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
-            color: "inherit",
+            color: "black",
             textDecoration: "none",
         }}
         >
-        BUMN
+        LSC
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         {pages.map((page) => (
             <Button
             key={page}
             onClick={() => handlePageChange(page)}
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{ my: 2, color: "Black", display: "block" }}
             >
             {page}
             </Button>
@@ -140,7 +141,7 @@ return (
         <IconButton
             size="large"
             aria-label="show 17 new notifications"
-            color="inherit"
+            color="black"
             onClick={() => handlePageChange("CartPage")}
         >
             <Badge badgeContent={props.itemInCart.length < 0 ? 0 : props.itemInCart.length} color="error">
