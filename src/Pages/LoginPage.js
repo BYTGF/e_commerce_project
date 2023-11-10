@@ -83,7 +83,6 @@ const handleLogin = () => {
   }
 };
 
-
 return (
   <div className='auth'>
     {toSignUp ? <SignUp onSignUp={inSignUp}/>

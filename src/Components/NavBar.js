@@ -67,7 +67,7 @@ return (
             textDecoration: "none",
         }}
         >
-        LSC
+        BUMN
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -123,7 +123,7 @@ return (
             textDecoration: "none",
         }}
         >
-        LSC
+        BUMN
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         {pages.map((page) => (
